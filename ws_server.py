@@ -19,9 +19,9 @@ class SendMsgBot(slixmpp.ClientXMPP):
         self.add_event_handler('session_start', self.start)
         self.add_event_handler('message', self.message)
 
-    def start(self, event):
+    async def start(self, event):
         self.send_presence()
-        self.get_roster()
+        await self.get_roster()
         self.send_message(mto=self.send_message_to, mbody='Im alive!')
 
     def send_to_server(self, message: str) -> None:
@@ -42,7 +42,7 @@ class JabberWebSocketHandler(WebSocketHandler):
         bot.register_plugin('xep_0030')  # Service Discovery
         bot.register_plugin('xep_0199')  # XMPP Ping
         bot.connect()
-        bot.process(forever=False)
+        bot.process(forever=True)
         self.bot = bot
 
     def open(self):

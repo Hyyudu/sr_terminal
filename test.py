@@ -35,7 +35,7 @@ class SendMsgBot(slixmpp.ClientXMPP):
             time.sleep(0.1)
             print(msg)
             print(msg['body'])
-            msg.reply("Thanks for sending:\n%s" % msg['body']).send()
+            msg.reply(f"Thanks for sending:\n{msg['body']}").send()
 
 
 # by_xmpp()
